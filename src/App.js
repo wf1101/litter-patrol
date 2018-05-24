@@ -31,7 +31,7 @@ class App extends Component {
     return bins;
   }
 
-  onTrashClicked() {
+  onTrashClicked = () => {
     // Fill this in!
   }
 
