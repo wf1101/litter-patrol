@@ -31,14 +31,14 @@ class App extends Component {
     return bins;
   }
 
-  onTrashClicked() {
-    // Fill this in!
-  }
+  onTrashClicked = () => {
+    this.setState({ points: this.state.points + 1 });
+  };
 
   render() {
     const bins = this.state.bins.map((bin, index) => {
       return (
-        <Trash key={`trash-${index}`} />
+        <Trash key={`trash-${index}`} isVisible={ bin.isTrashVisible } onClickHandler={ this.onTrashClicked }/>
       );
     });
 
