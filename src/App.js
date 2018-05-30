@@ -15,6 +15,7 @@ class App extends Component {
   }
 
   startGame() {
+		// when start game, every 1.5 seconds, visible bins will change because this.getBinsState()
     setInterval(() => {
       this.setState( {
         bins: this.getBinsState()
@@ -23,9 +24,12 @@ class App extends Component {
   }
 
   getBinsState() {
+		//  this function create a bins array to hold visible bins under
     let bins = [];
     for (let i = 0; i < 9; i++){
-      bins.push({ isTrashVisible: (Math.round(Math.random()) ? true : false )});
+			// console.log(i);
+			let bin = { isTrashVisible: (Math.round(Math.random()) ? true : false )};
+      bins.push(bin);
     }
 
     return bins;
@@ -33,12 +37,16 @@ class App extends Component {
 
   onTrashClicked = () => {
     // Fill this in!
+		this.setState({
+			points: this.state.points + 1
+		})
   }
 
   render() {
     const bins = this.state.bins.map((bin, index) => {
       return (
-        <Trash key={`trash-${index}`} />
+        <Trash key={`trash-${index}`} isTrashVisible={ bin.isTrashVisible }
+				onTrashClicked={ this.onTrashClicked } binIndex={ index } />
       );
     });
 
